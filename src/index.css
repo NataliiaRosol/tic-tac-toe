@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.row{
+  margin: -4px;
+}
+.square{
+  
+  border-right: 1px solid blue;
+  border-bottom: 1px solid blue;
+  border-top: 0;
+  border-left: 0;
+  font-size: 40px;
+  height: 100px;
+  padding: 0;
+  text-align: center;
+  width: 100px;
+  /* margin-right: -1px;
+  margin-top: -1px; */
+  cursor: pointer;
+}
+.square:first-child{
+  border-left: 1px solid blue;
+}
+.row:first-child{
+  border-top: 1px solid blue;
+}
