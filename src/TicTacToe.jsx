@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 */
 
 function Square({value, onClick}){
-
+  
   return <button onClick={onClick} className='square'>{value}</button>
 }
 
@@ -45,6 +45,11 @@ export default function TicTacToe(){
       }
     }
     return null
+  };
+
+  function handleRestart(){
+    setIsXTurn(true);
+    setSquares(Array(9).fill(''))
   }
 
   useEffect(()=>{
@@ -52,27 +57,30 @@ export default function TicTacToe(){
       setStatus('This i sa draw! Please resart the game')
     }
     else if(getWinner(squares)){
-      setStatus(`Winner is ${getWinner(squares)}`)
+      setStatus(`Winner is ${getWinner(squares)}. Plaese restart the game`)
+    }
+    else{
+      setStatus(`Next player   is ${isXTurn ? 'X' : 'O' }`)
     }
   }, [squares, isXTurn])
 
   return <div className='container'>
     <div className="wrapper">
-      <div className="row">
+      <div className="game-grid">
         <Square value={squares[0]} onClick={()=> handleClick(0)}/>
-        <Square value={squares[1]} onClick={()=> handleClick(1)} />
         <Square value={squares[2]} onClick={()=> handleClick(2)} />
-      </div>
-      <div className="row">
+        <Square value={squares[1]} onClick={()=> handleClick(1)} />
         <Square value={squares[3]} onClick={()=> handleClick(3)} />
         <Square value={squares[4]} onClick={()=> handleClick(4)} />
         <Square value={squares[5]} onClick={()=> handleClick(5)} />
-      </div>
-      <div className="row">
         <Square value={squares[6]} onClick={()=> handleClick(6)} />
         <Square value={squares[7]} onClick={()=> handleClick(7)} />
         <Square value={squares[8]} onClick={()=> handleClick(8)} />
       </div>
+      
+
+      <h1 className='status'>{status}</h1>
+      <button onClick={handleRestart} className='restartBtn'>Restart</button>
     </div>
     
   </div>
